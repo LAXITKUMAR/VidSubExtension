@@ -1,0 +1,23 @@
+/**
+VidSub YouTube captions styles
+**/
+$youtube-text-color: white;
+$youtube-bg-color: #e50914;
+$caption-scale: 1.01;
+
+.caption-window,
+.ytp-caption-window-container .ytp-caption-segment {
+  cursor: pointer;
+  user-select: text !important;
+}
+
+.ytp-caption-window-container {
+  user-select: text !important;
+  .ytp-caption-segment {
+    &:hover {
+      color: $youtube-text-color !important;
+      background-color: $youtube-bg-color !important;
+      transform: scale($caption-scale) !important;
+    }
+  }
+}

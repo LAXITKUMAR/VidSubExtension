@@ -1,0 +1,40 @@
+{
+  "name": "VidSub",
+  "version": "1.0.0",
+  "description": "Videos Powered by Subtitles",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "build:watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LAXITKUMAR/VidSubExtension.git"
+  },
+  "keywords": [
+    "VidSub",
+    "Video",
+    "powered",
+    "by",
+    "subtitles"
+  ],
+  "author": "kumar.laxit@gmail.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/LAXITKUMAR/VidSubExtension/issues"
+  },
+  "homepage": "https://github.com/LAXITKUMAR/VidSubExtension#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^9.0.0",
+    "css-loader": "^5.2.6",
+    "sass": "^1.34.1",
+    "sass-loader": "^12.0.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  }
+}

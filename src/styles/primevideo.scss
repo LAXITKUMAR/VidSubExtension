@@ -1,0 +1,17 @@
+/**
+VidSub PrimeVideo captions styles
+**/
+$primevideo-text-color: white;
+$primevideo-bg-color: #e50914;
+$caption-scale: 1.01;
+
+.atvwebplayersdk-captions-text {
+  user-select: text !important;
+  cursor: pointer !important;
+  pointer-events: all !important;
+  &:hover {
+    color: $primevideo-text-color !important;
+    background-color: $primevideo-bg-color !important;
+    transform: scale($caption-scale) !important;
+  }
+}

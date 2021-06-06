@@ -1,0 +1,21 @@
+/**
+VidSub Netflix captions styles
+**/
+$netflix-text-color: white;
+$netflix-bg-color: #e50914;
+$caption-scale: 1.01;
+
+.player-timedtext {
+  .player-timedtext-text-container {
+    z-index: 1 !important;
+    span {
+      user-select: text !important;
+      cursor: pointer;
+      &:hover {
+        color: $netflix-text-color !important;
+        background-color: $netflix-bg-color !important;
+        transform: scale($caption-scale) !important;
+      }
+    }
+  }
+}
