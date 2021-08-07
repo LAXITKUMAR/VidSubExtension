@@ -2,7 +2,7 @@
   "name": "VidSub",
   "description": "Click and search words in video captions. Currently supported on YouTube, Netflix and PrimeVideo.",
   "author": "Laxit Kumar - kumar.laxit@gmail.com",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage_url": "https://github.com/LAXITKUMAR/VidSubExtension",
   "content_scripts": [
     {
