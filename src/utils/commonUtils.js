@@ -3,7 +3,11 @@ import {
   HOST_PATTERNS,
   SEARCH_ENGINE_BASE_URL,
   SELECTORS,
+  SIDEBAR_SELECTOR_IDS,
 } from "../const/commonConstants";
+
+// To track if sidebar container is added to DOM or not
+let sidebar;
 
 /**
  * Get the platform on which video is played(YouTube, Netflix, PrimeVideo etc)
@@ -28,7 +32,7 @@ export const getPlatform = () => {
  */
 const getSearchUrl = (text) => {
   // For now only google is supported but in future controlled by preference
-  return `${SEARCH_ENGINE_BASE_URL.GOOGLE}?q=${text}+meaning`;
+  return `${SEARCH_ENGINE_BASE_URL.GOOGLE}?igu=1&q=${text}+meaning`;
 };
 
 /**
@@ -148,6 +152,26 @@ export const getClickedWord = (event, platform) => {
 };
 
 /**
+ * Show the side bar and load iframe into it
+ * @param {*} e
+ * @param {*} searchUrl
+ */
+const showSidebar = (searchUrl, mountSel) => {
+  if (!sidebar) {
+    const mountContainer = document.querySelector(mountSel);
+    if (mountContainer) {
+      sidebar = document.createElement("div");
+      sidebar.id = SIDEBAR_SELECTOR_IDS.CONTAINER;
+      sidebar.innerHTML = `<iframe id=${SIDEBAR_SELECTOR_IDS.IFRAME} src="${searchUrl}"></iframe>`;
+      mountContainer.appendChild(sidebar);
+    }
+  } else {
+    sidebar.querySelector(`#${SIDEBAR_SELECTOR_IDS.IFRAME}`).src = searchUrl;
+  }
+  document.getElementById(SIDEBAR_SELECTOR_IDS.CONTAINER).style.width = "50%";
+};
+
+/**
  * Get the word being clicked and search it in the new tab
  * @param {*} e Event object
  * @returns
@@ -155,13 +179,18 @@ export const getClickedWord = (event, platform) => {
 export const searchTerm = (platform) =>
   function (e) {
     // Get the selector based on the platform
-    const { VIDEO, CAPTION_SEGMENT } = SELECTORS[platform];
+    const { VIDEO, CAPTION_SEGMENT, SIDEBAR_MOUNT_CONTAINER } =
+      SELECTORS[platform];
 
     // Video element in which video is playing
     const videElem = document.querySelector(VIDEO);
     const cationSegmentList = document.querySelectorAll(CAPTION_SEGMENT) || [];
 
     if (e && !checkIfCorrectSelectorClicked(e.target, cationSegmentList)) {
+      const sideBarContainer = document.getElementById(
+        SIDEBAR_SELECTOR_IDS.CONTAINER
+      );
+      sideBarContainer && (sideBarContainer.style.width = "0");
       return;
     }
     // First pause the video
@@ -170,6 +199,6 @@ export const searchTerm = (platform) =>
     const clickedWord = getClickedWord(e, platform);
     if (clickedWord) {
       const SEARCH_URL = getSearchUrl(clickedWord);
-      window.open(SEARCH_URL);
+      showSidebar(SEARCH_URL, SIDEBAR_MOUNT_CONTAINER);
     }
   };
